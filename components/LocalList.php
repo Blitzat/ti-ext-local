@@ -108,19 +108,9 @@ class LocalList extends \System\Classes\BaseComponent
         $results = $this->mapIntoObjects(
             $this->filterQueryResult($results, $searchDeliveryAreas)
         );
-        // $type = var_dump($results);
-        // foreach($results as $restaurant){
-        //     if($restaurant->openingSchedule->isOpen()){
-        //         // continue;
-                
-        //     }
-        // }
-        
-        // $type = gettype($results);
-        // $class_methods = get_class_methods($results);
-        // $getobject = get_object_vars($results);
+
         $allElement = $results->all();
-        // $first = $allElement[1];
+        
         $length = count($allElement);
         for($i=0; $i<$length; $i++){
             $temp = $allElement[$i];
@@ -129,12 +119,8 @@ class LocalList extends \System\Classes\BaseComponent
             }else{
                 $results->pull($i);
                 $results->push($temp);
-                // array_push($allElement, $temp);
             }
         }
-
-
-
         
         return new LengthAwarePaginator(
             $results,
