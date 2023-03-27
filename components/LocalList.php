@@ -8,6 +8,8 @@ use Igniter\Local\Facades\Location;
 use Igniter\Local\Traits\SearchesNearby;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Event;
+use League\Fractal\Resource\Item;
+use Illuminate\Support\Collection;
 
 class LocalList extends \System\Classes\BaseComponent
 {
@@ -106,7 +108,34 @@ class LocalList extends \System\Classes\BaseComponent
         $results = $this->mapIntoObjects(
             $this->filterQueryResult($results, $searchDeliveryAreas)
         );
+        // $type = var_dump($results);
+        // foreach($results as $restaurant){
+        //     if($restaurant->openingSchedule->isOpen()){
+        //         // continue;
+                
+        //     }
+        // }
+        
+        // $type = gettype($results);
+        // $class_methods = get_class_methods($results);
+        // $getobject = get_object_vars($results);
+        $allElement = $results->all();
+        // $first = $allElement[1];
+        $length = count($allElement);
+        for($i=0; $i<$length; $i++){
+            $temp = $allElement[$i];
+            if($allElement[$i]->openingSchedule->isOpen()){
+                continue;
+            }else{
+                $results->pull($i);
+                $results->push($temp);
+                // array_push($allElement, $temp);
+            }
+        }
 
+
+
+        
         return new LengthAwarePaginator(
             $results,
             $query->toBase()->getCountForPagination(),

@@ -1,4 +1,6 @@
+
 @foreach ($locationsList as $locationObject)
+
     <a
         class="card w-100 p-3 mb-2 text-decoration-none"
         href="{{ page_url('local/menus', ['location' => $locationObject->permalink]) }}"
