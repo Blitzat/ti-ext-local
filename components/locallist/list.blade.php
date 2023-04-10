@@ -8,6 +8,7 @@
         <div class="boxes d-sm-flex g-0">
             <div class="col-12 col-sm-7">
                 <div class="d-sm-flex">
+                    
                     @if ($locationObject->hasThumb)
                         <div class="col-sm-3 p-0 me-sm-4 mb-3 mb-sm-0">
                             <img

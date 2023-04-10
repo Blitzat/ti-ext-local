@@ -22,7 +22,11 @@ class Info extends \System\Classes\BaseComponent
         $this->page['openingTimeFormat'] = lang('system::lang.moment.day_time_format_short');
         $this->page['lastOrderTimeFormat'] = lang('system::lang.moment.day_time_format');
 
+        // $locationInfo->orderTypes->isDisabled();
         $this->page['locationInfo'] = $this->makeInfoObject();
+        // $test = $this->page['locationInfo'];
+        // $test = null;
+        
     }
 
     public function getAreaConditionLabels(CoveredArea $area)
@@ -99,6 +103,8 @@ class Info extends \System\Classes\BaseComponent
         [$object->scheduleTypes, $object->scheduleItems] = $this->listScheduleItems($current);
 
         $object->model = $current;
+
+        
 
         return $object;
     }
